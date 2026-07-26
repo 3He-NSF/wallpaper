@@ -18,15 +18,18 @@ body {
 
 .wallpaper {
   width: 390px;
+  min-height: 844px;
   margin: 0 auto;
-  padding: 20px 16px 14px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
-  margin-bottom: 18px;
+  margin: 0;
 }
 
 .small-label {
@@ -78,7 +81,8 @@ body {
 .months-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px 10px;
+  gap: 16px 10px;
+  margin-top: auto;
 }
 
 .month-card {
