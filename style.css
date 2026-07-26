@@ -26,33 +26,64 @@ body {
   justify-content: center;
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
-  margin: 0;
-}
-
 .small-label {
-  margin: 0 0 6px;
+  margin: 0 0 4px;
   color: #b6b6b6;
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   letter-spacing: 0.04em;
 }
 
 .value {
   margin: 0;
-  font-size: 1.55rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f7f7f7;
+}
+
+.months-panel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(5, auto);
+  gap: 8px 6px;
+  margin-top: 8px;
+}
+
+.month-cards {
+  display: contents;
+}
+
+.progress-panel {
+  grid-column: 2;
+  grid-row: 5;
+  padding: 4px 2px 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  justify-self: center;
+  width: min(100%, 150px);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.value {
+  margin: 0;
+  font-size: 1rem;
   font-weight: 700;
   color: #f7f7f7;
 }
 
 .progress-bar {
   position: relative;
-  height: 10px;
+  height: 8px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   overflow: hidden;
+  margin-top: 8px;
 }
 
 .progress-filled {
@@ -66,28 +97,17 @@ body {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 0 14px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .detail {
-  margin: 12px 0 0;
+  margin: 10px 0 0;
   color: #b2b2b2;
-  font-size: 0.88rem;
-}
-
-.months-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px 6px;
-  margin-top: 8px;
-}
-
-.hero + .months-grid {
-  margin-top: 8px;
+  font-size: 0.78rem;
 }
 
 .month-card {

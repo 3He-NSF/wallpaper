@@ -17,7 +17,11 @@ const puppeteer = require('puppeteer');
   const page = await browser.newPage();
   await page.setViewport({ width, height, deviceScaleFactor: 1 });
   await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
-  await page.waitForSelector('.months-grid');
+  await page.waitForSelector('#monthCards');
+  await page.waitForFunction(() => {
+    const monthCards = document.querySelector('#monthCards');
+    return monthCards && monthCards.children.length === 12;
+  });
 
   await page.screenshot({
     path: outputPath,

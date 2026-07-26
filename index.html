@@ -8,7 +8,8 @@
 </head>
 <body>
   <main class="wallpaper">
-    <section class="hero">
+    <section class="months-panel">
+      <div id="monthCards" class="month-cards"></div>
       <div class="progress-panel">
         <div class="progress-header">
           <div>
@@ -23,8 +24,6 @@
         <p id="progressDetail" class="detail">-- / -- days</p>
       </div>
     </section>
-
-    <section class="months-grid" id="monthsGrid"></section>
   </main>
 
   <script>
@@ -78,15 +77,15 @@
       const progressThumb = document.getElementById('progressThumb');
       progressThumb.style.left = `calc(${percent}% - 10px)`;
 
-      const monthsGrid = document.getElementById('monthsGrid');
-      monthsGrid.innerHTML = '';
+      const monthCards = document.getElementById('monthCards');
+      monthCards.innerHTML = '';
 
       for (let monthIndex = 0; monthIndex < 12; monthIndex += 1) {
         const monthCard = createMonthGrid(year, monthIndex);
-        monthsGrid.appendChild(monthCard);
+        monthCards.appendChild(monthCard);
       }
 
-      const dots = monthsGrid.querySelectorAll('.dot');
+      const dots = monthCards.querySelectorAll('.dot');
       let dayCounter = 1;
 
       for (const dot of dots) {
