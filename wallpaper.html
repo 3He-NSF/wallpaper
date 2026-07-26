@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yearly Progress Wallpaper</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wallpaper">
+    <section class="hero">
+      <div class="progress-panel">
+        <div class="progress-header">
+          <div>
+            <p class="small-label">TODAY</p>
+            <p id="todayLabel" class="value">--</p>
+          </div>
+          <div>
+            <p class="small-label">PROGRESS</p>
+            <p id="percentLabel" class="value">--%</p>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div id="progressFilled" class="progress-filled"></div>
+          <div id="progressThumb" class="progress-thumb"></div>
+        </div>
+        <p id="progressDetail" class="detail">-- / -- days</p>
+      </div>
+    </section>
+
+    <section class="months-grid" id="monthsGrid"></section>
+  </main>
+
+  <script>
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    function createMonthGrid(year, monthIndex) {
+      const monthStart = new Date(year, monthIndex, 1);
+      const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+      const offset = monthStart.getDay();
+      const monthElement = document.createElement('article');
+      monthElement.className = 'month-card';
+      monthElement.innerHTML = `
+        <p class="month-label">${monthNames[monthIndex]}</p>
+        <div class="dot-grid"></div>
+      `;
+
+      const grid = monthElement.querySelector('.dot-grid');
+
+      for (let i = 0; i < offset; i += 1) {
+        const spacer = document.createElement('span');
+        spacer.className = 'dot-space';
+        grid.appendChild(spacer);
+      }
+
+      for (let day = 1; day <= daysInMonth; day += 1) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'dot';
+        dot.textContent = '';
+        grid.appendChild(dot);
+      }
+
+      return monthElement;
+    }
+
+    function buildWallpaper() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const startOfYear = new Date(year, 0, 1);
+      const dayOfYear = Math.floor((now - startOfYear) / 86400000) + 1;
+      const totalDays = new Date(year, 11, 31).getDate() + 365 - new Date(year, 11, 31).getDate();
+      const isLeap = ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0);
+      const daysInYear = isLeap ? 366 : 365;
+      const percent = Math.floor((dayOfYear / daysInYear) * 100);
+
+      document.getElementById('todayLabel').textContent = `${monthNames[now.getMonth()]} ${now.getDate()}`;
+      document.getElementById('percentLabel').textContent = `${percent}%`;
+      document.getElementById('progressDetail').textContent = `${dayOfYear} / ${daysInYear} days`;
+
+      const progressFilled = document.getElementById('progressFilled');
+      progressFilled.style.width = `${percent}%`;
+      const progressThumb = document.getElementById('progressThumb');
+      progressThumb.style.left = `calc(${percent}% - 10px)`;
+
+      const monthsGrid = document.getElementById('monthsGrid');
+      monthsGrid.innerHTML = '';
+
+      for (let monthIndex = 0; monthIndex < 12; monthIndex += 1) {
+        const monthCard = createMonthGrid(year, monthIndex);
+        monthsGrid.appendChild(monthCard);
+      }
+
+      const dots = monthsGrid.querySelectorAll('.dot');
+      let dayCounter = 1;
+
+      for (const dot of dots) {
+        const dayIndex = dayCounter;
+        if (dayIndex < dayOfYear) {
+          dot.classList.add('completed');
+        }
+        if (dayIndex === dayOfYear) {
+          dot.classList.add('today');
+        }
+        dayCounter += 1;
+      }
+    }
+
+    buildWallpaper();
+  </script>
+</body>
+</html>

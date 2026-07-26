@@ -55,7 +55,7 @@ body {
 .progress-panel {
   grid-column: 2;
   grid-row: 5;
-  padding: 4px 2px 0;
+  padding: 12px 2px 0;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
