@@ -20,10 +20,11 @@ body {
   width: 390px;
   height: 844px;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 0px 16px;
+  padding-bottom: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .small-label {
@@ -44,7 +45,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: repeat(5, auto);
-  gap: 8px 6px;
+  margin-top: 50px;
+  gap: 8px 10px;
   margin-top: 8px;
 }
 
@@ -55,7 +57,7 @@ body {
 .progress-panel {
   grid-column: 2;
   grid-row: 5;
-  padding: 12px 2px 0;
+  padding: 4px 2px 16px;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
