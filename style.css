@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(180deg, #040404 0%, #0f0f0f 44%, #080808 100%);
+  color: #ebebeb;
+  font-family: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif;
+}
+
+.wallpaper {
+  width: 390px;
+  min-height: 844px;
+  margin: 0 auto;
+  padding: 24px 16px 24px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.small-label {
+  margin: 0 0 6px;
+  color: #b6b6b6;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+.value {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #f7f7f7;
+}
+
+.progress-bar {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.progress-filled {
+  height: 100%;
+  width: 0;
+  background: rgba(255, 255, 255, 0.95);
+  transition: width 0.4s ease;
+}
+
+.progress-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.3);
+}
+
+.detail {
+  margin: 12px 0 0;
+  color: #b2b2b2;
+  font-size: 0.88rem;
+}
+
+.months-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px 12px;
+}
+
+.month-card {
+  padding: 0;
+}
+
+.month-label {
+  margin: 0 0 8px;
+  color: #d7d7d7;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.dot-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.dot-space,
+.dot {
+  width: 12px;
+  height: 12px;
+}
+
+.dot {
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.dot:focus {
+  outline: none;
+}
+
+.dot.completed {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.dot.today {
+  background: rgba(255, 255, 255, 1);
+}
+
+.month-card .dot {
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .wallpaper {
+    width: 100%;
+    padding: 20px 14px 20px;
+  }
+  .months-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
