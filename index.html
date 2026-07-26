@@ -12,10 +12,6 @@
       <div class="progress-panel">
         <div class="progress-header">
           <div>
-            <p class="small-label">TODAY</p>
-            <p id="todayLabel" class="value">--</p>
-          </div>
-          <div>
             <p class="small-label">PROGRESS</p>
             <p id="percentLabel" class="value">--%</p>
           </div>
@@ -74,7 +70,6 @@
       const daysInYear = isLeap ? 366 : 365;
       const percent = Math.floor((dayOfYear / daysInYear) * 100);
 
-      document.getElementById('todayLabel').textContent = `${monthNames[now.getMonth()]} ${now.getDate()}`;
       document.getElementById('percentLabel').textContent = `${percent}%`;
       document.getElementById('progressDetail').textContent = `${dayOfYear} / ${daysInYear} days`;
 
