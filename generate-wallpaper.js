@@ -15,10 +15,17 @@ const puppeteer = require('puppeteer');
 
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
-  await page.setViewport({ width, height });
+  await page.setViewport({ width, height, deviceScaleFactor: 3 });
   await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle0' });
   await page.waitForSelector('.months-grid');
-  await page.screenshot({ path: outputPath, clip: { x: 0, y: 0, width, height } });
+
+  const contentHeight = await page.evaluate(() => {
+    const wallpaper = document.querySelector('.wallpaper');
+    return wallpaper ? Math.ceil(wallpaper.getBoundingClientRect().height) : window.innerHeight;
+  });
+
+  await page.setViewport({ width, height: Math.max(height, contentHeight), deviceScaleFactor: 3 });
+  await page.screenshot({ path: outputPath, fullPage: true });
   await browser.close();
 
   console.log(`Generated ${outputPath}`);
